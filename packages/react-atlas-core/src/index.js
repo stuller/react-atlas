@@ -6,6 +6,7 @@ export { CheckboxCore } from "./Checkbox";
 export { CheckboxGroupCore } from "./CheckboxGroup";
 export { DatePickerCore } from './DatePicker';
 export { DialogCore } from "./Dialog";
+export { DrawerCore } from "./Drawer";
 export { DropdownCore } from "./Dropdown";
 export { FormCore } from "./Form";
 export { HintCore } from "./Hint";
