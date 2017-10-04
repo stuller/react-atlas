@@ -154,6 +154,7 @@ let components = [
   "checkbox",
   "checkboxGroup",
   "datePicker",
+  "drawer",
   "dropdown",
   "form",
   "input",
