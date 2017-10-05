@@ -1,0 +1,16 @@
+.drawer {
+    composes: default-text from '../styles.css';
+    composes: default-font from '../styles.css';
+}
+.drawer-left {
+
+}
+.drawer-right {
+
+}
+.drawer-top {
+
+}
+.drawer-bottom {
+
+}
