@@ -42,7 +42,8 @@ class TextField extends React.PureComponent {
   }
 
   _handleChange = (value, event, isValid) => {
-    // Handles any change to the textField and sets state accordingly including "value" and "isValid"  Also sets the onChange event is passed in as a prop
+    // Handles any change to the textField and sets state accordingly including "value" and "isValid"  
+    // Also sets the onChange event is passed in as a prop
     event.persist();
 
     if (this.props.maxLength) {
@@ -110,7 +111,8 @@ class TextField extends React.PureComponent {
       "ra_Tooltip__block": true
     });
 
-    // used if header prop is included.  Also used to include required asterisk and tooltip if those props are included
+    // used if header prop is included.  
+    // Also used to include required asterisk and tooltip if those props are included
     let textFieldHeader = header && 
       <div styleName={"header"}>
         <span styleName={"headerFont"}>{header}</span>
@@ -282,7 +284,6 @@ TextField.propTypes = {
    */
   "inline": PropTypes.bool,
 
-  
   /**
    * passes tooltip as prop if added to textField
    * @example '<TextField header="tooltip Header" tooltip="tool of the tip"/>'
