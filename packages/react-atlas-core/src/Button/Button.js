@@ -161,10 +161,14 @@ Button.propTypes = {
 
   /**
     * The class name of the icon you want to set.
+    * @examples '<Button icon={"fa fa-id-card"}>Text</Button>'
     */
   "icon": PropTypes.string,
 
-  /* Pass inline styles here. */
+  /**
+   * Pass inline styling here. 
+   * @examples '<Button style={{padding: "50px"}}/>Text</Button>'
+   */
   "style": PropTypes.object
 };
 

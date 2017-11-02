@@ -27,7 +27,9 @@ Card.propTypes = {
    */
   "children": PropTypes.node.isRequired,
 
-  /** An Object, array, or string of CSS classes to apply to card.*/
+  /** 
+    * An Object, array, or string of CSS classes to apply to card.
+    */
   "className": PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,
@@ -36,10 +38,14 @@ Card.propTypes = {
 
   /**
    * Title of the Card
+   * <Card  legend="Card Example">{children}</Card>
    */
   "legend": PropTypes.string,
 
-  /* Pass inline styles here. */
+  /**
+   * Pass inline styling here. 
+   * @examples '<Card style={{padding: "50px"}}/>{children}</Card>'
+   */
   "style": PropTypes.object
 };
 
