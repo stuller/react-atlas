@@ -65,7 +65,7 @@ class Accordion extends React.PureComponent {
   render() {
     let { className, children, width, titlePosition, style } = this.props;
 
-    // activeClass is added to activ
+    // classes to add state, style, header and panel features
     let stateClasses, styleClasses, headerClasses, panelClasses;
 
     styleClasses = cx({
@@ -87,6 +87,7 @@ class Accordion extends React.PureComponent {
       headerClasses = cx("accordion_header", stateClasses, styleClasses);
       panelClasses = cx("accordion_panel", stateClasses);
 
+      // This turns children of <Accordion> into a header and a panel (display) section
       let accordion_panel = 
         <div>
           <div
@@ -166,11 +167,20 @@ Accordion.propTypes = {
      * @examples <Accordion titlePosition={left}>{children}</Accordion>
      */
   "titlePosition": PropTypes.string,
-  /* The width of the accordion as a string or number. */
+  /**
+     * The width of the accordion as a string or number. 
+     * @examples <Accordion width={400}> or <Accordion width='400rem'>{children}</Accordion>
+     */
   "width": PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /* A boolean to disable or not disable the accordion component. */
+  /**
+     * A boolean to disable or not disable the accordion component.
+     * @examples <Accordion disabled>{children}</Accordion>
+     */
   "disabled": PropTypes.bool,
-  /* Pass inline styles here. */
+  /**
+     * Pass inline styles here. 
+     * @examples <Accordion style={{padding: '50px'}}>{children}</Accordion>
+     */
   "style": PropTypes.object
 };
 
