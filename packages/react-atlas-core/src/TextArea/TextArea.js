@@ -8,6 +8,7 @@ class TextArea extends React.PureComponent {
   constructor(props) {
     super(props);
 
+    // isValid conditional block to determine if the user defined the isValid prop and set its value to false
     let isValid;
     if (typeof props.isValid === "undefined") {
       isValid = true;
@@ -17,6 +18,7 @@ class TextArea extends React.PureComponent {
       isValid = props.isValid;
     }
 
+    // checks to make sure header is included with tooltip
     if (this.props.tooltip && !this.props.header) {
       throw "Tooltip requires Header";
     }
@@ -39,6 +41,8 @@ class TextArea extends React.PureComponent {
   }
 
   _handleChange = (value, event, isValid) => {
+    // Handles any change to the textField and sets state accordingly including "value" and "isValid"  
+    // Also sets the onChange event is passed in as a prop
     event.persist();
 
     if (this.props.maxLength) {
@@ -59,10 +63,12 @@ class TextArea extends React.PureComponent {
   };
 
   _handleFocus = () => {
+    // sets "active" state to true if focus is placed on this field
     this.setState({ "active": true });
   };
 
   _handleBlur = () => {
+    // sets "active" state to false if focus is placed on this field
     this.setState({ "active": false });
   };
 
@@ -90,12 +96,23 @@ class TextArea extends React.PureComponent {
       "tooltipRight": tooltipRight
     });
 
+    // classes used to make tooltip work as an inline prop
+    let tooltipInternalClasses = cx({
+      "ra_Tooltip__tooltip": true,
+      "ra_Tooltip__active": true,
+      "ra_Tooltip__tooltip-right": true,
+      "ra_Tooltip__tooltipContent": true,
+      "ra_Tooltip__block": true
+    });
+
     let remainingCount = maxLength && 
       <div styleName={"remainingCount"}>
         {maxLength - this.state.remaining}/{maxLength}
       </div>
     ;
 
+    // used if header prop is included.  
+    // Also used to include required asterisk and tooltip if those props are included
     let textAreaHeader = header && 
       <div styleName={"header"}>
         <span styleName={"headerFont"}>{header}</span>
@@ -229,12 +246,23 @@ TextArea.propTypes = {
 	 * @examples '<TextArea hidden/>'
 	 */
   "hidden": PropTypes.bool,
-
-  /* passes tooltip as prop if added to textArea */
+  
+  /**
+   * passes tooltip as prop if added to textField
+   * @example '<TextField header="tooltip Header" tooltip="tool of the tip"/>'
+   */
   "tooltip": PropTypes.string,
-  /* Pass inline styling here. */
+  
+  /**
+   * Pass inline styling here. 
+   * @examples '<TextField style={{padding: "50px"}}/>'
+   */
   "style": PropTypes.object,
 
+  /**
+   * passes tooltipRight as prop to allow right positioning 
+   * @example '<TextField header="tooltip Header" tooltip="tool of the tip" tooltipRight/>'
+   */
   "tooltipRight": PropTypes.bool
 };
 
