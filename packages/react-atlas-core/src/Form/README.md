@@ -29,3 +29,23 @@ Error Form:
 	  <TextField small placeholder="Confirm Password" required type="password" name="confirm"></TextField>
 		<Button type="submit">Submit</Button>
 	</Form>
+
+test: 
+	<Form>
+		<TextField name="example"/>
+	  	<Card>
+		    <TextField name="example"/>
+		    <Dropdown>
+		    	<span value="bird">Bird</span>
+		    	<span value="cow">Cow</span>
+			    <span value="cbpcdmh">Cow Bird Pick Cat Dog Monkey Human</span>
+			    <span value="monkey">Monkey</span>
+			    <span value="eee">eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</span>
+		  	</Dropdown>
+		  	<CheckboxGroup title="Checkbox Group" name="checkboxGroup" onChange={(value, event, isValid, checked) => { console.log(value, event, isValid, checked)}}>
+				<Checkbox label="Checkbox 1" value="first" checked />
+				<Checkbox label="Checkbox 2" value="second" />
+				<Checkbox label="Checkbox 3" value="third" />
+			</CheckboxGroup>
+	  	</Card>
+	</Form>

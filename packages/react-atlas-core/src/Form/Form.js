@@ -13,18 +13,73 @@ class Form extends React.PureComponent {
 
     let childState = [];
 
-    React.Children.map(props.children, (child, i) => {
-      let state = {
-        "index": i,
-        "value": child.props.value || "",
-        "isValid": true,
-        "onChange": child.props.onChange || null
-      };
+    this.childObjectLoop = function(obj, idx) {
+      let kid = React.Children.map(obj, (child, i) => {
+        let state;
+        if(typeof child.props.children === "object"){
+          console.log(this.childObjectRELoop(child.props.children, idx));
+        } else if (typeof child.props.children === "input") {
 
+        } else {
+          console.log("else: ", child.props)
+          // state = {
+          //   "index": idx,
+          //   "value": child.props.value || "",
+          //   "isValid": true,
+          //   "onChange": child.props.onChange || null
+          // };   
+        }
+
+        return state;
+      })
+    }
+
+    this.childObjectRELoop = function(obj, idx) {
+      let kid = React.Children.map(obj, (child, i) => {
+        let state;
+        if(typeof child.props.children === "object") {
+          state = this.childObjectRELoop(child.props.children, idx);
+
+          // console.log(child)
+        } else {
+          console.log(child.props);
+          // state = {
+          //   "index": idx,
+          //   "value": child.props.value || "",
+          //   "isValid": true,
+          //   "onChange": child.props.onChange || null
+          // };   
+        }
+        return state;
+      })
+    }
+
+
+    React.Children.map(props.children, (child, i) => {
+console.log("child: ", child.type)
+      let state;
+      if(typeof child.props.children === 'object') {
+        state = this.childObjectLoop(child.props.children);
+      } else {
+        console.log(child.props)
+      // state = {
+      //     "index": i,
+      //     "value": child.props.value || "",
+      //     "isValid": true,
+      //     "onChange": child.props.onChange || null
+      //   };     
+      }
+state = {
+          "index": i,
+          "value": child.props.value || "",
+          "isValid": true,
+          "onChange": child.props.onChange || null
+        }; 
       childState.push(state);
 
       return child;
     });
+    console.log("childState: ", childState)
 
     this.state = {
       "childState": childState
@@ -145,6 +200,65 @@ class Form extends React.PureComponent {
     this.setState({ "childState": childState });
   };
 
+  childObjectHandler = (obj, idx) => {
+    let kid = React.Children.map(obj, (child, i) => {
+      if(typeof child.props.children === 'object') {
+        this.kidObjectHandler(child.props.children, i);
+      } else {
+        let state = {
+          "index": idx,
+          "value": child.props.value || "",
+          "isValid": true,
+          "onChange": child.props.onChange || null
+        }; 
+        return state;
+
+      }
+
+    })
+  };
+
+  kidObjectHandler = (obj, idx) => {
+    let child = React.Children.map(obj, (kid, i) => {
+      if(typeof kid.props.children === 'object') {
+        this.childObjectHandler(child.props.children, i);
+      } else {
+
+      }
+
+    })
+
+  };
+
+  // textFieldChildHandler = (obj) => {
+
+  // };
+
+  // checkboxChildHandler = (obj) => {
+
+  // };
+
+  // checkboxGroupChildHandler = (obj) => {
+
+  // };
+
+  // radioChildHandler = (obj) => {
+
+  // };
+
+  // radioGroupChildHandler = (obj) => {
+
+  // };
+
+  // textAreaChildHandler = (obj) => {
+
+  // };
+
+  // dropdownChildHandler = (obj) => {
+
+  // };
+
+
   render() {
     const {
       className,
@@ -157,7 +271,12 @@ class Form extends React.PureComponent {
     /* Loop through children components and set onChange handlers
      * and add CSS classes. */
     let kids = React.Children.map(children, (child, i) => {
+      // console.log("render: ", child.props)
       let classes = cx(child.props.className, childClasses);
+
+      if(typeof child.props.children === 'object') {
+        this.childObjectHandler(child.props.children, i);
+      }
 
       let props = {
         "className": classes,
